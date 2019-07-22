@@ -26,6 +26,20 @@ function AppModel() {
     });
   };
 
+  this.count = function() {
+    var self = this;
+    $.ajax({
+      url: "server/getSession.php",
+      success: function(result) {
+        var log = JSON.stringify(result);
+        var daa = JSON.parse(log);
+
+        var length = daa.data.length;
+        var cartsize = $("#cart_size");
+        cartsize.html(length);
+      }
+    });
+  };
   //start the session
   this.startSession = function() {
     var self = this;

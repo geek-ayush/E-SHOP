@@ -7,12 +7,15 @@ function AppController() {
 
   this.shoeshotStart = function() {
     // //load the db in UI
+    this.model.count();
     this.model.showObject();
+    this.pre_render();
   };
 
   this.cartStart = function() {
     // //load the db in UI
     this.model.getSession();
+    this.model.count();
   };
 
   //call Toggleitem from model.js
@@ -32,11 +35,13 @@ function AppController() {
       window.location.href = "cart.html";
     });
 
+    $("#shopMore").click(function() {
+      window.location.href = "index.html";
+    });
+
     $("#buyall").click(function() {
       self.model.buyallitem();
       self.pre_render();
-
-      //self.pre_render();
     });
   };
 
@@ -72,6 +77,8 @@ function AppController() {
       addToCart.click(
         function(id, i) {
           self.model.addToSession(id, i);
+          self.model.count();
+          self.pre_render();
         }.bind(null, index, i)
       );
 
