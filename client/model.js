@@ -36,7 +36,9 @@ function AppModel() {
 
         var length = daa.data.length;
         var cartsize = $("#cart_size");
+        var cartsize1 = $("#cart_size1");
         cartsize.html(length);
+        cartsize1.html(length);
       }
     });
   };
@@ -89,6 +91,7 @@ function AppModel() {
       url: "server/buySession.php",
       success: function(result) {
         self.shoecollection = [];
+        console.log(self.shoecollection.length);
       }
     });
   };

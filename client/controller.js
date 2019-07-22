@@ -41,6 +41,7 @@ function AppController() {
 
     $("#buyall").click(function() {
       self.model.buyallitem();
+      self.model.count();
       self.pre_render();
     });
   };
@@ -79,6 +80,7 @@ function AppController() {
           self.model.addToSession(id, i);
           self.model.count();
           self.pre_render();
+          self.showToast();
         }.bind(null, index, i)
       );
 
@@ -114,5 +116,13 @@ function AppController() {
     $(document).ajaxStop(function() {
       self.render(filter);
     });
+  };
+
+  this.showToast = function() {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function() {
+      x.className = x.className.replace("show", "");
+    }, 3000);
   };
 }
