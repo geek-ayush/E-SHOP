@@ -41,7 +41,8 @@ function AppController() {
 
     $("#buyall").click(function() {
       self.model.buyallitem();
-      self.model.count();
+      var cartsize = $("#cart_size");
+      cartsize.html("0");
       self.pre_render();
     });
   };

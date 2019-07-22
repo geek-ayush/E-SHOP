@@ -33,12 +33,9 @@ function AppModel() {
       success: function(result) {
         var log = JSON.stringify(result);
         var daa = JSON.parse(log);
-
         var length = daa.data.length;
         var cartsize = $("#cart_size");
-        var cartsize1 = $("#cart_size1");
         cartsize.html(length);
-        cartsize1.html(length);
       }
     });
   };
