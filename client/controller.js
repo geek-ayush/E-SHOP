@@ -25,12 +25,6 @@ function AppController() {
   this.attachEventHandlers = function() {
     var self = this;
 
-    //event handler for Show Completed TODO
-    $("#done").click(function() {
-      console.log("qwertyuio");
-      self.model.showObject();
-    });
-
     $("#cart").click(function() {
       window.location.href = "cart.html";
     });
@@ -42,8 +36,13 @@ function AppController() {
     $("#buyall").click(function() {
       self.model.buyallitem();
       var cartsize = $("#cart_size");
-      cartsize.html("0");
       self.pre_render();
+      if (cartsize.text() == 0) {
+        self.showToastAdd();
+      } else {
+        self.showToast();
+        cartsize.html("0");
+      }
     });
   };
 
@@ -121,6 +120,13 @@ function AppController() {
 
   this.showToast = function() {
     var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function() {
+      x.className = x.className.replace("show", "");
+    }, 3000);
+  };
+  this.showToastAdd = function() {
+    var x = document.getElementById("snackbarAdd");
     x.className = "show";
     setTimeout(function() {
       x.className = x.className.replace("show", "");
