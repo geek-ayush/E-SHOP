@@ -52,14 +52,20 @@ function AppController() {
 
       var li = $("<li></li>");
       var shoeimage = $("<img></img>", { src: "img/" + shoeitem.img });
-      var item = $("<span></span>").text(shoeitem.itemname);
-      var seller = $("<span></span>").text(shoeitem.sellername);
-      var prize = $("<span></span>").text(shoeitem.prize);
+      var item = $("<span></span>", { class: "itemText content" }).text(
+        shoeitem.itemname
+      );
+      var seller = $("<span></span>", { class: "sellerText content" }).text(
+        shoeitem.sellername
+      );
+      var prize = $("<span></span>", { class: "prizeText content" }).text(
+        "Rs:" + shoeitem.prize
+      );
 
       var addToCart = $("<input />", {
         type: "button",
         value: "Add To Cart",
-        class: "libutton"
+        class: "btn"
       });
 
       //call funtion for delete TODO item
@@ -73,11 +79,11 @@ function AppController() {
       li.append("<div>");
       li.append(shoeimage);
       li.append("</div>");
-      li.append("<div>");
-      li.append(item);
-      li.append("</div>");
       li.append("<div >");
       li.append(seller);
+      li.append("</div>");
+      li.append("<div>");
+      li.append(item);
       li.append("</div>");
       li.append("<div >");
       li.append(prize);
