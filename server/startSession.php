@@ -4,8 +4,7 @@ header("Content-Type: application/json");
 include 'config/connection.php';
 include 'response.php';
 
-$id=$_POST['id'];
-echo $id;
+$id=$_GET['id'];
 
  if(!isset($_SESSION['shoecollection']))
  {
@@ -24,7 +23,9 @@ echo $id;
                 "prize"=>$row['prize'])
             );
         }
-        echo json_encode(successResponse($_SESSION[$id] ));
+        echo json_encode(successResponse("Successss ADDDED" ));
+     }else{
+         echo json_encode(successResponse("Suceesssfuly started"));
      }
      
  }

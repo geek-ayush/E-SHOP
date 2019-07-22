@@ -42,6 +42,7 @@ function AppModel() {
   //start the session
   this.startSession = function() {
     var self = this;
+    console.log;
     $.ajax({
       url: "server/startSession.php",
       data: {
@@ -57,13 +58,21 @@ function AppModel() {
   this.addToSession = function(id) {
     console.log(id);
     $.ajax({
-      type: "POST",
-      url: "server/startSession.php",
-      data: {
-        id: id
-      },
+      url: "server/startSession.php?id=" + id,
       success: function(data) {
-        console.log("item added" + data);
+        console.log("item added");
+      }
+    });
+  };
+
+  //add item to session
+  this.removeFromSession = function(i) {
+    var self = this;
+    $.ajax({
+      url: "server/removeFromSession.php?id=" + i,
+      success: function(data) {
+        self.shoecollection.splice(i, 1);
+        self.count();
       }
     });
   };

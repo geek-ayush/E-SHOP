@@ -3,8 +3,6 @@ function AppController() {
   this.model = new AppModel();
   this.model.startSession();
 
-  this.startweb = function() {};
-
   this.shoeshotStart = function() {
     // //load the db in UI
     this.model.count();
@@ -36,7 +34,7 @@ function AppController() {
     $("#buyall").click(function() {
       self.model.buyallitem();
       var cartsize = $("#cart_size");
-      self.pre_render();
+      self.pre_render("cart");
       if (cartsize.text() == 0) {
         self.showToastAdd();
       } else {
@@ -74,7 +72,7 @@ function AppController() {
         class: "btn"
       });
 
-      //call funtion for delete TODO item
+      //call funtion for Add item item
       addToCart.click(
         function(id, i) {
           self.model.addToSession(id, i);
@@ -82,6 +80,20 @@ function AppController() {
           self.pre_render();
           self.showToast();
         }.bind(null, index, i)
+      );
+
+      var removeFromCart = $("<input />", {
+        type: "button",
+        value: "Remove",
+        class: "btn btnRM"
+      });
+
+      //call funtion for delete item
+      removeFromCart.click(
+        function(i) {
+          self.model.removeFromSession(i);
+          self.pre_render("cart");
+        }.bind(null, i)
       );
 
       //append all element in li
@@ -100,6 +112,10 @@ function AppController() {
       if (filter != "cart") {
         li.append("<div >");
         li.append(addToCart);
+        li.append("</div>");
+      } else {
+        li.append("<div >");
+        li.append(removeFromCart);
         li.append("</div>");
       }
 
